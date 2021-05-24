@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import contactActions from '../../redux/phonebook/phonebook-actions';
+import * as contactActions from '../../redux/phonebook/phonebook-actions';
 import shortid from 'shortid';
 import s from './Filter.module.css';
 

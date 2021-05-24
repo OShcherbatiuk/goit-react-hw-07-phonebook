@@ -1,9 +1,8 @@
 import { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import shortid from 'shortid';
-import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-import contactActions from '../../redux/phonebook/phonebook-actions';
+import contactOperations from '../../redux/phonebook/phonebook-operations';
 
 import s from './ContactForm.module.css';
 
@@ -22,7 +21,6 @@ class ContactForm extends Component {
   handleChange = event => {
     const { name, value } = event.currentTarget;
     this.setState({
-      id: uuidv4(),
       [name]: value,
     });
   };
@@ -79,7 +77,7 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: data => dispatch(contactActions.addContact(data)),
+  onSubmit: data => dispatch(contactOperations.addContact(data)),
 });
 
 ContactForm.propTypes = {
