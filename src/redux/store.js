@@ -1,6 +1,4 @@
-// import { combineReducers } from 'redux';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-// import { composeWithDevTools } from 'redux-devtools-extension';
 import phonebookReducer from './phonebook/phonebook-reducer';
 import logger from 'redux-logger';
 import {
@@ -15,11 +13,6 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-// const rootReducer = combineReducers({
-//   phonebook: phonebookReducer,
-// });
-
-// const store = createStore(rootReducer, composeWithDevTools());
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
