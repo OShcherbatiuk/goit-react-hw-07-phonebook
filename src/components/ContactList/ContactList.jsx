@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import contactOperations from '../../redux/phonebook/phonebook-operations';
+import { phonebookOperations } from '../../redux/phonebook';
 import { PropTypes } from 'prop-types';
+import { getVisibleContact } from '../../redux/phonebook/phonebook-selectors';
 
 import s from './ContactList.module.css';
 
@@ -23,19 +24,12 @@ const ContactList = ({ contacts, onDeleteContact }) => {
   );
 };
 
-const getVisibleContact = (filter, contacts) => {
-  const normalizedFilter = filter.toLowerCase();
-  return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter),
-  );
-};
-
-const mapStateToProps = ({ phonebook: { filter, contacts } }) => ({
-  contacts: getVisibleContact(filter, contacts),
+const mapStateToProps = state => ({
+  contacts: getVisibleContact(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(contactOperations.deleteContact(id)),
+  onDeleteContact: id => dispatch(phonebookOperations.deleteContact(id)),
 });
 
 ContactList.propTypes = {

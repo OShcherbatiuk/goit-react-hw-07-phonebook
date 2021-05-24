@@ -1,8 +1,12 @@
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import * as contactActions from '../../redux/phonebook/phonebook-actions';
+import { changeFilter } from '../../redux/phonebook/phonebook-actions';
 import shortid from 'shortid';
 import s from './Filter.module.css';
+import {
+  getFilter,
+  getAllContacts,
+} from '../../redux/phonebook/phonebook-selectors';
 
 const inputId = shortid.generate();
 
@@ -25,12 +29,12 @@ const Filter = ({ contacts, value, onChange }) => {
 };
 
 const mapStateToProps = state => ({
-  value: state.phonebook.filter,
-  contacts: state.phonebook.contacts,
+  value: getFilter(state),
+  contacts: getAllContacts(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChange: e => dispatch(contactActions.changeFilter(e.target.value)),
+  onChange: e => dispatch(changeFilter(e.target.value)),
 });
 
 Filter.propTypes = {

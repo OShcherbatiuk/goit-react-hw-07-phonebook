@@ -11,7 +11,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -22,12 +21,6 @@ const middleware = [
   logger,
 ];
 
-// const phonebookPersistConfig = {
-//   key: 'contacts',
-//   storage,
-//   blacklist: ['filter'],
-// };
-
 const store = configureStore({
   reducer: {
     phonebook: phonebookReducer,
@@ -36,7 +29,4 @@ const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
-// const persistor = persistStore(store);
-
-// eslint-disable-next-line import/no-anonymous-default-export
 export default store;

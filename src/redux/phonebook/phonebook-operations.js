@@ -13,13 +13,20 @@ import {
 
 axios.defaults.baseURL = 'http://localhost:4040';
 
-const fetchContact = () => dispatch => {
+const fetchContact = () => async dispatch => {
   dispatch(fetchContactRequest());
 
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactSuccess(data)))
-    .catch(error => dispatch(fetchContactError(error)));
+  try {
+    const { data } = await axios.get('/contacts');
+    dispatch(fetchContactSuccess(data));
+  } catch (error) {
+    dispatch(fetchContactError(error));
+  }
+
+  // axios
+  //   .get('/contacts')
+  //   .then(({ data }) => dispatch(fetchContactSuccess(data)))
+  //   .catch(error => dispatch(fetchContactError(error)));
 };
 
 const addContact = data => dispatch => {
